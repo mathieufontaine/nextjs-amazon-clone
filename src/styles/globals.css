@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .link {
+    @apply cursor-pointer p-2 hover:underline md:text-sm;
+  }
+  .button {
+    @apply cursor-pointer p-2 md:text-sm bg-gradient-to-b from-yellow-200
+     to-yellow-400 border border-yellow-300 rounded-sm focus:outline-none 
+     focus:ring-2 focus:ring-yellow-500 active:from-yellow-500 
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -11,8 +22,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 255, 255, 255;
+    --background-end-rgb: 205, 205, 205;
   }
 }
 

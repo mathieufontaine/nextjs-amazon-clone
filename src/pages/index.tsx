@@ -1,20 +1,36 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import Header from "@/components/Header";
+import Banner from "@/components/Banner";
+import ProductFeed from "@/components/ProductFeed";
+import { GetServerSideProps } from "next";
+import { Product } from "@/typings";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+
+export default function Home({ products} : {products: Product[]}) {
+
+  console.log(products)
   return (
     <>
       <Header />
       <main
-        className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+        className={`min-h-screen max-w-screen-2xl mx-auto ${inter.className}`}
       >
-        <h1 className="text-3xl font-bold text-center">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <Banner />
+        <ProductFeed products={products} />
       </main>
     </>
   );
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const data = await fetch("https://fakestoreapi.com/products")
+    const products = await data.json();
+  console.log(products)
+  return {
+    props: {
+      products,
+    },
+  };
 }
