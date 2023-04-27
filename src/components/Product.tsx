@@ -9,7 +9,7 @@ function Product({ product }: { product: Product }) {
   const [hasPrime, setHasPrime] = useState(true)
 
   return (
-    <div className="cursor-pointer p-3 bg-white text-black flex flex-col justify-between">
+    <div className="cursor-pointer p-3 h-full bg-white text-black flex flex-col justify-between">
       
       <p className="text-xs my-2 text-right text-gray-500 italic">{product.category}</p>
       <div className="relative h-32 w-32 mx-auto my-2">
