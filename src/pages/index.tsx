@@ -27,7 +27,7 @@ export default function Home({ products} : {products: Product[]}) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const data = await fetch("https://fakestoreapi.com/products")
     const products = await data.json();
-  console.log(products)
+
   return {
     props: {
       products,
