@@ -1,10 +1,17 @@
+import { addToBasket } from "@/slices/basketSlice";
 import { Product } from "@/typings";
 import { StarIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 function Product({ product }: { product: Product }) {
   const [hasPrime, setHasPrime] = useState(true);
+  const dispatch = useDispatch();
+
+const addItemsToBasket = () => {
+    dispatch(addToBasket(product));
+}
 
   return (
     <div className="cursor-pointer p-3 h-full bg-white text-black flex flex-col justify-between">
@@ -41,7 +48,9 @@ function Product({ product }: { product: Product }) {
           <p className="text-xs text-gray-500">FREE Next-day Delivery</p>
         </div>
       )}
-      <button className="mt-auto button">Add to Basket</button>
+      <button 
+      onClick={addItemsToBasket}
+      className="mt-auto button">Add to Basket</button>
     </div>
   );
 }

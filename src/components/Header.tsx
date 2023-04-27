@@ -5,20 +5,27 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/24/solid";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { selectItems } from "@/slices/basketSlice";
+import { Product } from "@/typings";
 
 function Header() {
   const { data: session } = useSession();
+  const router = useRouter();
+  const items : Product[] = useSelector(selectItems);
 
   return (
     <header>
       <div className="flex px-6 items-center justify-between bg-amazon_blue p-1 flex-grow py-2">
-        <div className="mt-2 flex items-center flex-grow sm:flex-grow-0">
+        <div  className="mt-2 flex items-center flex-grow sm:flex-grow-0">
           <Image
             src="https://links.papareact.com/f90"
             alt="amazon logo"
             width={150}
             height={40}
             className="cursor-pointer"
+            onClick={() => router.push("/")}
           />
         </div>
         <div className="hidden md:flex flex-1 rounded-lg  h-12 mx-4 flex-grow text-black bg-yellow-400 hover:bg-yellow-500">
@@ -49,9 +56,12 @@ function Header() {
           <p>Returns</p>
           <p>& Orders</p>
         </div>
-        <div className="link relative flex items-center space-x-2">
+        <div
+         onClick={() => router.push("/checkout")}
+          className="link relative flex items-center space-x-2"
+        >
           <span className="absolute -top-2 -right-2 md:right-5 h-5 w-5 text-center rounded-full bg-yellow-400 text-black font-bold flex items-center justify-center">
-            0
+            {items.length}
           </span>
           <ShoppingCartIcon className="h-8" />
           <p className="hidden md:block">Cart</p>
