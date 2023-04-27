@@ -2,16 +2,15 @@ import { Product } from "@/typings";
 import { StarIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useState } from "react";
-import CurrencyFormat from "react-currency-format";
-
 
 function Product({ product }: { product: Product }) {
-  const [hasPrime, setHasPrime] = useState(true)
+  const [hasPrime, setHasPrime] = useState(true);
 
   return (
     <div className="cursor-pointer p-3 h-full bg-white text-black flex flex-col justify-between">
-      
-      <p className="text-xs my-2 text-right text-gray-500 italic">{product.category}</p>
+      <p className="text-xs my-2 text-right text-gray-500 italic">
+        {product.category}
+      </p>
       <div className="relative h-32 w-32 mx-auto my-2">
         <Image
           src={product.image}
@@ -30,15 +29,7 @@ function Product({ product }: { product: Product }) {
           ))}
       </div>
       <p className="text-xs mt-2">{product.description}</p>
-
-      <CurrencyFormat
-        value={product.price}
-        displayType={"text"}
-        thousandSeparator={true}
-        prefix={"$"}
-        className="mt-2 font-bold"
-        // renderText={(value: number) => <div>{value}</div>}
-      />
+      <span className="mt-2 font-bold">{`$${product.price}`}</span>
       {hasPrime && (
         <div className="flex items-center space-x-2 mt-2">
           <Image
